@@ -16,7 +16,7 @@ export const getUsers = (_, res) => {
 
 // Está funcioando
 export const addUser = (req, res) => {
-    const q = "INSERT INTO tb_usuarios(nome_usuario, login, senha, tipo) VALUES ?"
+    const q = "INSERT INTO tb_usuarios(nome, login, senha, tipo) VALUES ?"
 
     const values = [[
         req.body.nome,
@@ -32,13 +32,14 @@ export const addUser = (req, res) => {
     })
 }
 export const updateUser = (req, res) => {
-    const q = "UPDATE tb_usuarios SET id_usuario = ?, nome_usuario = ?, login = ?, senha = ? WHERE id = ?"
+    const q = "UPDATE tb_usuarios SET id_usuario = ?, nome = ?, login = ?, senha = ? WHERE id <> ?"
 
     const values = [
-        req.body.id_usuario,
-        req.body.nome_usuario,
+        req.body.id,
+        req.body.nome,
         req.body.login,
         req.body.senha,
+        req.body.tipo,
     ]
 
     db.query(q, [...values, req.params.id], (err) => {
@@ -50,7 +51,7 @@ export const updateUser = (req, res) => {
 
 // Deletar usuario funcionando!
 export const deleteUser = (req, res) => {
-    const q = "DELETE FROM tb_usuarios WHERE `id_usuario` = ?"
+    const q = "DELETE FROM tb_usuarios WHERE `id` = ?"
 
     db.query(q, [req.params.id], (err) => {
         if(err) return res.json(err)
