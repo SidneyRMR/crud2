@@ -27,9 +27,10 @@ export const addProducts = (req, res) => {
   }
   
 export const updateProducts = (req, res) => {
-    const q = "UPDATE tb_produtos SET 'nome' = ?, 'preco' = ?, 'medida' = ?, 'ehComida' = ? WHERE `id` = ?"
+    const q = "UPDATE tb_produtos SET id = ?, nome = ?, preco = ?, medida = ?, tipo = ? WHERE id = ?"
 
     const values = [
+        req.body.id,
         req.body.nome,
         req.body.preco,
         req.body.medida,

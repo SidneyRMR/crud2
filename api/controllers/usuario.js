@@ -14,25 +14,14 @@ export const getUsers = (_, res) => {
     })
 }
 
-// export const getUser = (req, res) => {
-//     const q = "SELECT * FROM tb_usuarios WHERE id = ?"
-//     const values = [req.params.id]
-
-
-//     db.query(q, values, (err, data) => {
-//         if (err) return res.json(err);
-//         return res.status(200).json(data);
-//       });
-// }
-
 export const addUser = (req, res) => {
     const q = "INSERT INTO tb_usuarios('nome_usuario', 'login', 'senha') VALUES(?)"
 
-    const values = [
+    const values = [[
         req.body.nome,
         req.body.login,
         req.body.senha,
-    ]
+    ]]
 
     db.query(q, [values], (err) => {
         if(err) return res.json(err)
@@ -41,10 +30,11 @@ export const addUser = (req, res) => {
     })
 }
 export const updateUser = (req, res) => {
-    const q = "UPDATE tb_usuarios SET 'nome_usuario' = ?, 'login' = ?, 'senha' = ? WHERE `id` = ?"
+    const q = "UPDATE tb_usuarios SET id_usuario = ?, nome_usuario = ?, login = ?, senha = ? WHERE id = ?"
 
     const values = [
-        req.body.nome,
+        req.body.id_usuario,
+        req.body.nome_usuario,
         req.body.login,
         req.body.senha,
     ]
