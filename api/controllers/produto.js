@@ -15,21 +15,17 @@ export const getProducts = (_, res) => {
 }
 
 export const addProducts = (req, res) => {
-    const q = "INSERT INTO tb_produtos('nome', 'preco', 'medida', 'ehComida') VALUES(?)"
-
+    const q = 'INSERT INTO tb_produtos (nome, preco, medida, tipo) VALUES ?'
+  
     const values = [
-        req.body.nome,
-        req.body.preco,
-        req.body.medida,
-        req.body.tipo,
+      [req.body.nome, req.body.preco, req.body.medida, req.body.tipo],
     ]
-
     db.query(q, [values], (err) => {
-        if(err) return res.json(err)
-
-        return res.status(200).json('Produto criado com sucesso!')
+      if (err) return res.json(err)
+      return res.status(200).json('Produto criado com sucesso!')
     })
-}
+  }
+  
 export const updateProducts = (req, res) => {
     const q = "UPDATE tb_produtos SET 'nome' = ?, 'preco' = ?, 'medida' = ?, 'ehComida' = ? WHERE `id` = ?"
 
@@ -37,7 +33,7 @@ export const updateProducts = (req, res) => {
         req.body.nome,
         req.body.preco,
         req.body.medida,
-        req.body.ehComida,
+        req.body.tipo,
     ]
 
     db.query(q, [...values, req.params.id], (err) => {
