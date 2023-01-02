@@ -30,15 +30,16 @@ export const addUser = (req, res) => {
 
         return res.status(200).json('Usuário criado com sucesso!')
     })
+
 }
 export const updateUser = (req, res) => {
-    const q = "UPDATE tb_usuarios SET id_usuario = ?, nome = ?, login = ?, senha = ? WHERE id <> ?"
+    const q = "UPDATE tb_usuarios SET id = ?, nome = ?, login = ?, tipo = ? WHERE id = ?"
 
     const values = [
         req.body.id,
         req.body.nome,
         req.body.login,
-        req.body.senha,
+        // req.body.senha,
         req.body.tipo,
     ]
 
