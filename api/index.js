@@ -7,10 +7,7 @@ const app = express()
 app.use(express.json())
 app.use(cors())
 
-// rotas para acessar api pelo navegador ou front-end
-// /usuarios - lê tabela tb_usuarios
-// /produtos - lê tabela tb_produtos
-// /formas - lê tabela tb_formas
+// rota para acessar api pelo navegador ou front-end
 app.use("/", userRoutes)
 
 //define em que porta que será disponibilizado a api da consulta/query
