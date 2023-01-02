@@ -15,12 +15,13 @@ export const getUsers = (_, res) => {
 }
 
 export const addUser = (req, res) => {
-    const q = "INSERT INTO tb_usuarios('nome_usuario', 'login', 'senha') VALUES(?)"
+    const q = "INSERT INTO tb_usuarios(nome_usuario, login, senha, tipo) VALUES ?"
 
     const values = [[
         req.body.nome,
         req.body.login,
         req.body.senha,
+        req.body.tipo,
     ]]
 
     db.query(q, [values], (err) => {
